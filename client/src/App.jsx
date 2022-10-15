@@ -1,26 +1,38 @@
-import { EthProvider } from "./contexts/EthContext";
-import Intro from "./components/Intro/";
-import Setup from "./components/Setup";
-import Demo from "./components/Demo";
-import Footer from "./components/Footer";
+import React, { Suspense } from "react";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+import { Spinner } from "reactstrap";
+import { Dashboard } from "./pages";
+
+import "./assets/scss/theme.scss";
 import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <EthProvider>
-      <div id="App">
-        <div className="container">
-          <Intro />
-          <hr />
-          <Setup />
-          <hr />
-          <Demo />
-          <hr />
-          <Footer />
-        </div>
-      </div>
-    </EthProvider>
+    <>
+      <Suspense
+        fallback={
+          <div
+            style={{
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Spinner>loading...</Spinner>
+          </div>
+        }
+      >
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="*" component={() => "404 NOT FOUND"} />
+          </Switch>
+        </Router>
+      </Suspense>
+    </>
   );
-}
+};
 
 export default App;

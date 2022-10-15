@@ -1,0 +1,43 @@
+//
+// projects.scss
+//
+
+// project list
+
+.project-list-table {
+  // border-collapse:separate;
+  // border-spacing: 30px;
+  tr {
+    background-color: $card-bg;
+  }
+}
+
+.overview-list-table {
+  tr {
+    background-color: $card-bg;
+  }
+}
+
+.table-card-overview {
+  background-color: $card-bg;
+  padding: 5px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.vertical-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.button-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.div-border {
+  border-top: $table-border-width solid $table-border-color;
+}
