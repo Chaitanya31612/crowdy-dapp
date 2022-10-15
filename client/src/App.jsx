@@ -5,6 +5,7 @@ import { Dashboard } from "./pages";
 
 import "./assets/scss/theme.scss";
 import "./App.css";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
   return (
@@ -27,7 +28,8 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route path="*" component={() => "404 NOT FOUND"} />
+
+            <Route component={NotFoundPage} />
           </Switch>
         </Router>
       </Suspense>

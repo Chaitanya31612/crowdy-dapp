@@ -1,15 +1,19 @@
 import { EthProvider } from "../contexts/EthContext";
-import Intro from "../components/Intro";
-import Setup from "../components/Setup";
 import Demo from "../components/Demo";
-import Footer from "../components/Footer";
+import { CampaignsList } from "../components/Dashboard";
+import Header from "../components/Header";
+import CreateCampaignButton from "../components/Dashboard/CreateCampaignButton";
 
 const Dashboard = () => {
   return (
     <EthProvider>
       <div id="App">
-        <div className="container">
-          <Demo />
+        <div id="container">
+          <Header />
+          <div className="p-5">
+            <CreateCampaignButton />
+            <CampaignsList />
+          </div>
         </div>
       </div>
     </EthProvider>

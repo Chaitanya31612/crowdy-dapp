@@ -1,0 +1,28 @@
+.header {
+  //   font-family: "Roboto", sans-serif;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 7rem;
+  background-color: $white;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  position: relative;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 600;
+    // color: $gray-900;
+    background: linear-gradient(90deg, #0880dc 0%, #0f54bc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__address {
+    margin-left: 1rem;
+    font-size: 1.4rem;
+    color: $gray-700;
+  }
+}
