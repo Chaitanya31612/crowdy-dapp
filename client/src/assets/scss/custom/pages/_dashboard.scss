@@ -5,4 +5,31 @@
     font-weight: 600;
     color: $gray-900;
   }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 80vw;
+    width: 100%;
+    margin: 0 auto;
+
+    &__card {
+      margin-bottom: 2rem !important;
+      width: 100% !important;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid $gray-500;
+      border-radius: 0.5rem;
+      padding: 3rem;
+      background-color: $white;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
 }

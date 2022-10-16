@@ -6,17 +6,17 @@ import CreateCampaignButton from "../components/Dashboard/CreateCampaignButton";
 
 const Dashboard = () => {
   return (
-    <EthProvider>
-      <div id="App">
-        <div id="container">
-          <Header />
-          <div className="p-5">
-            <CreateCampaignButton />
-            <CampaignsList />
-          </div>
+    // <EthProvider>
+    <div id="App">
+      <div id="container">
+        <Header />
+        <div className="p-5">
+          <CreateCampaignButton />
+          <CampaignsList />
         </div>
       </div>
-    </EthProvider>
+    </div>
+    // </EthProvider>
   );
 };
 

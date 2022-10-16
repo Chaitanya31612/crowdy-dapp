@@ -1,0 +1,19 @@
+.create_campaign {
+  &__title {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $gray-900;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}

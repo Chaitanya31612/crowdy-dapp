@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.2",
+    "classnames": "^2.3.2",
     "eth-icon": "^1.0.1",
     "node-sass": "^6.0.1",
     "react": "^18.2.0",
@@ -20,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch:sass": "node-sass client/src/assets/scss/theme.scss client/src/assets/scss/theme.css -w"
   },
   "eslintConfig": {
     "extends": [

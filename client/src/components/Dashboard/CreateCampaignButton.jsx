@@ -7,7 +7,12 @@ const CreateCampaignButton = () => {
   const history = useHistory();
   console.log("createbutton");
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        // justifyContent: "flex-end",
+      }}
+    >
       {/* go to /new page */}
       <Button
         className="p-3 mb-5 fs-4"
