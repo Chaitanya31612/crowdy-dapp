@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardBody,
@@ -35,7 +36,7 @@ const CampaignsList = () => {
   console.log(campaigns);
   return (
     <div className="campaignslist">
-      <h1 className="campaignslist__title">Live Campaigns List</h1>
+      <h1 className="page__title">Live Campaigns List</h1>
       {/* <br />
       <br /> */}
 
@@ -44,7 +45,8 @@ const CampaignsList = () => {
           .slice(0)
           .reverse()
           .map((campaign, index) => (
-            <div
+            <Link
+              to={`/campaigns/${campaign}`}
               key={index}
               onMouseOver={() => {
                 setCardHover(true);
@@ -54,7 +56,7 @@ const CampaignsList = () => {
                 setCardHover(false);
                 setCardHoverId("");
               }}
-              className="my-3 w-100 campaignslist__list__card"
+              className="my-3 w-100 text-decoration-none campaignslist__list__card"
               color="light"
             >
               {/* <CardHeader>Header</CardHeader> */}
@@ -84,7 +86,7 @@ const CampaignsList = () => {
                 />
               </div>
               {/* </CardBody> */}
-            </div>
+            </Link>
           ))}
       </div>
     </div>

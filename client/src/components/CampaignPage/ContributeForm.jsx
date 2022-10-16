@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Form,
-  FormFeedback,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
-import LoadingButton from "../Common/LoadingButton";
+import React, { useState } from "react";
+import { Form, FormFeedback, FormGroup, Input } from "reactstrap";
 import { useEth } from "../../contexts/EthContext";
-import { useHistory } from "react-router-dom";
+import LoadingButton from "../Common/LoadingButton";
 
-const CreateCampaignForm = () => {
+const ContributeForm = () => {
   const {
     state: { compaignFactoryContract, accounts },
   } = useEth();
-  const history = useHistory();
 
-  const [minimumContribution, setMinimumContribution] = useState("");
+  const [contributeAmount, setContributeAmount] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -29,12 +20,12 @@ const CreateCampaignForm = () => {
     setDisabled(true);
     try {
       setLoading(true);
-      await compaignFactoryContract.methods
-        .createCampaign(minimumContribution)
-        .send({ from: accounts[0] });
+      //   await compaignFactoryContract.methods
+      //     .createCampaign(contributeAmount)
+      //     .send({ from: accounts[0] });
       setLoading(false);
       setDisabled(false);
-      history.push("/");
+      //   history.push("/");
     } catch (error) {
       setLoading(false);
       setDisabled(false);
@@ -44,38 +35,27 @@ const CreateCampaignForm = () => {
   };
 
   return (
-    <div className="create_campaign">
-      <h1 className="page__title">Create new Campaign</h1>
-      <br />
+    <div className="contribute">
+      <h1 className="page__title">Contribute to the Campaign</h1>
       <br />
       <br />
       <Form onSubmit={handleFormSubmit} className="create_campaign__form">
         <FormGroup style={{ width: "100%" }}>
           <Input
             className="mb-3 p-3 fs-4"
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Campaign Title"
-          />
-          <FormFeedback>Invalid Input</FormFeedback>
-        </FormGroup>
-        <br />
-        <FormGroup style={{ width: "100%" }}>
-          <Input
-            className="mb-3 p-3 fs-4"
             type="number"
-            value={minimumContribution}
-            onChange={(e) => setMinimumContribution(e.target.value)}
+            value={contributeAmount}
+            onChange={(e) => setContributeAmount(e.target.value)}
             name="mincontribution"
             id="mincontribution"
             required
-            valid={minimumContribution ? minimumContribution >= 0 : false}
-            invalid={!!errorMessage || minimumContribution < 0}
-            placeholder="Minimum Contribution (in wei) *"
+            valid={contributeAmount ? contributeAmount >= 0 : false}
+            invalid={!!errorMessage || contributeAmount < 0}
+            placeholder="Amount (in wei) *"
           />
           <FormFeedback className="fs-5">
-            {errorMessage || "Enter minimum contribution integer value in wei"}
+            {errorMessage ||
+              "Enter contribution amount as integer value in wei"}
           </FormFeedback>
         </FormGroup>
         <br />
@@ -88,11 +68,11 @@ const CreateCampaignForm = () => {
           color="primary"
           style={{ cursor: "pointer", width: "100%", fontWeight: "500" }}
         >
-          Create
+          Contribute
         </LoadingButton>
       </Form>
     </div>
   );
 };
 
-export default CreateCampaignForm;
+export default ContributeForm;

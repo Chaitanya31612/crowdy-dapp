@@ -1,0 +1,31 @@
+.campaigndetails {
+  &__heading {
+    // text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $gray-900;
+    // text-decoration: dotted underline;
+  }
+
+  &__details {
+    &--card {
+      padding: 2rem;
+      padding-top: 1rem;
+      &-title {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: $gray-900;
+      }
+
+      &-value {
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: $primary;
+      }
+    }
+  }
+}
+
+.contribute {
+  margin-top: 8rem;
+}

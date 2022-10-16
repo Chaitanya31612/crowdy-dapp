@@ -1,12 +1,4 @@
 .create_campaign {
-  &__title {
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 600;
-    color: $gray-900;
-  }
-
   &__form {
     display: flex;
     flex-direction: column;

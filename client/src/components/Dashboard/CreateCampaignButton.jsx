@@ -5,7 +5,6 @@ import { useEth } from "../../contexts/EthContext";
 
 const CreateCampaignButton = () => {
   const history = useHistory();
-  console.log("createbutton");
   return (
     <div
       style={{
@@ -18,7 +17,7 @@ const CreateCampaignButton = () => {
         className="p-3 mb-5 fs-4"
         color="primary"
         style={{ cursor: "pointer" }}
-        onClick={() => history.push("/new")}
+        onClick={() => history.push("/campaigns/new")}
       >
         Create Campaign
         <i className="mdi mdi-plus-circle-outline ms-1 fs-5" />
