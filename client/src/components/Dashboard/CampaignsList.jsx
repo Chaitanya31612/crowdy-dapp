@@ -17,23 +17,28 @@ const CampaignsList = () => {
   } = useEth();
 
   const [campaigns, setCampaigns] = useState([]);
+  const [campaignsData, setCampaignsData] = useState([]);
   const [cardHover, setCardHover] = useState(false);
   const [cardHoverId, setCardHoverId] = useState("");
 
   useEffect(() => {
     const getCampaigns = async () => {
       if (compaignFactoryContract) {
-        const campaigns = await compaignFactoryContract.methods
-          .getDeployedCampaigns()
+        // const campaigns = await compaignFactoryContract.methods
+        //   .getDeployedCampaigns()
+        //   .call();
+        // setCampaigns(campaigns);
+        const campainsData = await compaignFactoryContract.methods
+          .getDeployedCampaignsData()
           .call();
-        setCampaigns(campaigns);
+        setCampaignsData(campainsData);
       }
     };
     getCampaigns();
     // console.log("called");
   }, [compaignFactoryContract]);
 
-  console.log(campaigns);
+  console.log(campaignsData);
   return (
     <div className="campaignslist">
       <h1 className="page__title">Live Campaigns List</h1>
@@ -41,12 +46,12 @@ const CampaignsList = () => {
       <br /> */}
 
       <div className="mt-5 campaignslist__list">
-        {campaigns
+        {campaignsData
           .slice(0)
           .reverse()
           .map((campaign, index) => (
             <Link
-              to={`/campaigns/${campaign}`}
+              to={`/campaigns/${campaign[0]}`}
               key={index}
               onMouseOver={() => {
                 setCardHover(true);
@@ -59,24 +64,42 @@ const CampaignsList = () => {
               className="my-3 w-100 text-decoration-none campaignslist__list__card"
               color="light"
             >
-              {/* <CardHeader>Header</CardHeader> */}
+              {/* <CardHeader className="campaignslist__list__card__title">
+                <span>{campaign[1]}</span>
+                <p className="campaignslist__list__card__description">
+                  {campaign[2]}
+                </p>
+              </CardHeader> */}
               {/* <CardBody> */}
-              <CardTitle
-                tag="h5"
-                className="fs-3"
-                style={{ fontWeight: "bold", color: "#233" }}
-              >
-                {campaign}
-              </CardTitle>
+              <div>
+                <h3 className="campaignslist__list__card__title">
+                  {campaign[1]}
+                </h3>
+                <p className="campaignslist__list__card__description">
+                  {campaign[2]}
+                </p>
+
+                <CardTitle
+                  tag="h5"
+                  className="fs-3"
+                  style={{ fontWeight: "bold", color: "#233" }}
+                >
+                  {campaign[0]}
+                </CardTitle>
+              </div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                {cardHover && cardHoverId === index ? (
-                  <span
-                    style={{ fontWeight: "light" }}
-                    className="text-primary fs-5 me-3"
-                  >
-                    View Campaign{" "}
-                  </span>
-                ) : null}
+                {/* {cardHover && cardHoverId === index ? ( */}
+                <span
+                  style={{ fontWeight: "light" }}
+                  className={
+                    cardHover && cardHoverId === index
+                      ? "text-primary fs-5 me-3 visible"
+                      : "text-primary fs-5 me-3 invisible"
+                  }
+                >
+                  View Campaign{" "}
+                </span>
+                {/* ) : null} */}
                 <i
                   className={
                     cardHover && cardHoverId === index

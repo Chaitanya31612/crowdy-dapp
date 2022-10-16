@@ -17,6 +17,8 @@ const CreateCampaignForm = () => {
   } = useEth();
   const history = useHistory();
 
+  const [campaignName, setCampaignName] = useState("");
+  const [campaignDescription, setCampaignDescription] = useState("");
   const [minimumContribution, setMinimumContribution] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -30,7 +32,7 @@ const CreateCampaignForm = () => {
     try {
       setLoading(true);
       await compaignFactoryContract.methods
-        .createCampaign(minimumContribution)
+        .createCampaign(campaignName, campaignDescription, minimumContribution)
         .send({ from: accounts[0] });
       setLoading(false);
       setDisabled(false);
@@ -56,7 +58,22 @@ const CreateCampaignForm = () => {
             type="text"
             name="title"
             id="title"
+            value={campaignName}
+            onChange={(e) => setCampaignName(e.target.value)}
             placeholder="Campaign Title"
+          />
+          <FormFeedback>Invalid Input</FormFeedback>
+        </FormGroup>
+        <br />
+        <FormGroup style={{ width: "100%" }}>
+          <Input
+            className="mb-3 p-3 fs-4"
+            type="text"
+            name="title"
+            id="title"
+            value={campaignDescription}
+            onChange={(e) => setCampaignDescription(e.target.value)}
+            placeholder="Campaign Description"
           />
           <FormFeedback>Invalid Input</FormFeedback>
         </FormGroup>

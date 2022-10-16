@@ -2,18 +2,52 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract CampaignFactory {
+    struct CampaignStruct {
+        address campaignAddress;
+        string campaignName;
+        string campaignDescription;
+    }
+
+    CampaignStruct[] public deployedCampaignsData;
     address[] public deployedCampaigns;
 
     // takes minimum value to pass to the campaign contract
     function createCampaign(uint256 minimumContribution_) public {
         address newCampaign = address(
-            new Campaign(minimumContribution_, msg.sender)
+            new Campaign("", "", minimumContribution_, msg.sender)
+        );
+        deployedCampaigns.push(newCampaign);
+    }
+
+    function createCampaign(
+        string memory campaignName_,
+        string memory campaignDescription_,
+        uint256 minimumContribution_
+    ) public {
+        address newCampaign = address(
+            new Campaign(
+                campaignName_,
+                campaignDescription_,
+                minimumContribution_,
+                msg.sender
+            )
+        );
+        deployedCampaignsData.push(
+            CampaignStruct(newCampaign, campaignName_, campaignDescription_)
         );
         deployedCampaigns.push(newCampaign);
     }
 
     function getDeployedCampaigns() public view returns (address[] memory) {
         return deployedCampaigns;
+    }
+
+    function getDeployedCampaignsData()
+        public
+        view
+        returns (CampaignStruct[] memory)
+    {
+        return deployedCampaignsData;
     }
 }
 
@@ -33,14 +67,29 @@ contract Campaign {
     mapping(address => bool) public approvers;
     uint256 public approversCount;
 
+    string public campaignName;
+    string public campaignDescription;
+
     modifier restricted() {
         require(msg.sender == manager);
         _;
     }
 
-    constructor(uint256 minimumContribution_, address creator) {
+    // constructor(uint256 minimumContribution_, address creator) {
+    //     manager = creator;
+    //     minimumContribution = minimumContribution_;
+    // }
+
+    constructor(
+        string memory campaignName_,
+        string memory campaignDescription_,
+        uint256 minimumContribution_,
+        address creator
+    ) {
         manager = creator;
         minimumContribution = minimumContribution_;
+        campaignName = campaignName_;
+        campaignDescription = campaignDescription_;
     }
 
     function contribute() public payable {
@@ -86,5 +135,29 @@ contract Campaign {
         request.recipient.transfer(request.value);
 
         request.complete = true;
+    }
+
+    function getSummary()
+        public
+        view
+        returns (
+            uint256,
+            uint256,
+            uint256,
+            uint256,
+            address
+        )
+    {
+        return (
+            minimumContribution,
+            address(this).balance,
+            requests.length,
+            approversCount,
+            manager
+        );
+    }
+
+    function getRequestsCount() public view returns (uint256) {
+        return requests.length;
     }
 }

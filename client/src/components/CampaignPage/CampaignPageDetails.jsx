@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Card, CardBody, Col, Row } from "reactstrap";
+import { useEth } from "../../contexts/EthContext";
 
-const CampaignPageDetails = () => {
+const CampaignPageDetails = ({ id }) => {
+  const {
+    state: { campaignContract },
+  } = useEth();
   const history = useHistory();
+
+  const [campaignSummary, setCampaignSummary] = useState({
+    amount: 0,
+    minContribution: 0,
+    noRequests: 0,
+    noContributors: 0,
+  });
+
+  useEffect(() => {
+    console.log("address ", id);
+  }, []);
 
   const cards = [
     {
@@ -17,7 +32,7 @@ const CampaignPageDetails = () => {
       iconClass: "bx bx-copy-alt",
     },
     {
-      title: "Pending Requests",
+      title: "Total Spending Requests",
       text: 2,
       iconClass: "bx bx-copy-alt",
     },
