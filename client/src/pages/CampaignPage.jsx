@@ -4,9 +4,11 @@ import {
   ContributeForm,
 } from "../components/CampaignPage";
 import Header from "../components/Header";
+import { useEth } from "../contexts/EthContext";
 import setCampaingArtifact from "../contexts/EthContext/setCampaingArtifact";
 
 const CampaignPage = ({ match: { params } }) => {
+  const { dispatch } = useEth();
   const [campaignContract, setCampaignContract] = useState(null);
   const [campaignSummary, setCampaignSummary] = useState({
     minContribution: 0,
@@ -34,6 +36,7 @@ const CampaignPage = ({ match: { params } }) => {
   useEffect(() => {
     const init = async () => {
       const data = await setCampaingArtifact(params.id);
+      dispatch({ type: "SET_CAMPAIGN_ARTIFACT", data });
       // console.log("data", data);
       setCampaignContract(data?.compaignContract);
     };
@@ -50,7 +53,10 @@ const CampaignPage = ({ match: { params } }) => {
     <div>
       <Header />
       <div className="p-5">
-        <CampaignPageDetails campaignSummary={campaignSummary} />
+        <CampaignPageDetails
+          campaignSummary={campaignSummary}
+          address={params.id}
+        />
         <ContributeForm
           campaignContract={campaignContract}
           getSummary={getSummary}

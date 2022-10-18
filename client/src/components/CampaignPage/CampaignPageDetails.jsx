@@ -4,17 +4,17 @@ import { Button, Card, CardBody, Col, Row } from "reactstrap";
 import { useEth } from "../../contexts/EthContext";
 import setCampaingArtifact from "../../contexts/EthContext/setCampaingArtifact";
 
-const CampaignPageDetails = ({ campaignSummary }) => {
+const CampaignPageDetails = ({ campaignSummary, address }) => {
   const history = useHistory();
 
   const cards = [
     {
-      title: "Collected Amount",
+      title: "Collected Amount (wei)",
       text: campaignSummary.amount,
       iconClass: "bx bx-copy-alt",
     },
     {
-      title: "Minimum Contribution",
+      title: "Minimum Contribution (wei)",
       text: campaignSummary.minContribution,
       iconClass: "bx bx-copy-alt",
     },
@@ -24,7 +24,7 @@ const CampaignPageDetails = ({ campaignSummary }) => {
       iconClass: "bx bx-copy-alt",
     },
     {
-      title: "Total Contributions",
+      title: "Total Number of Contributions",
       text: campaignSummary.noContributors,
       iconClass: "bx bx-copy-alt",
     },
@@ -40,18 +40,17 @@ const CampaignPageDetails = ({ campaignSummary }) => {
         }}
       >
         <h1 className="campaigndetails__heading">Campaign Details</h1>
-        <Button
-          to={`/`}
-          className="p-3 mb-5 me-4 fs-5 text-decoration-none"
+        <Link
+          to={`/campaigns/${address}/requests`}
+          className="p-3 mb-5 me-4 fs-5 text-decoration-none text-white bg-primary rounded"
           color="primary"
           style={{ cursor: "pointer", fontWeight: "bold" }}
           onClick={() => history.push("/")}
         >
           View Requests
-        </Button>
+        </Link>
       </Row>
 
-      <br />
       <Row>
         {/* <Col lg="auto"> */}
         <div className="page__title text-primary text-decoration-underline fw-bold mb-3">
@@ -59,6 +58,11 @@ const CampaignPageDetails = ({ campaignSummary }) => {
         </div>
         <div className="page__title fw-normal text-muted mb-5 fs-3">
           {campaignSummary.campaignDescription}
+        </div>
+        {/* manager */}
+        <div className="page__title fw-bold text-muted mb-3 fs-5">Manager:</div>
+        <div className="page__title fw-normal text-muted mb-5 fs-3">
+          {campaignSummary.manager}
         </div>
         {/* </Col> */}
       </Row>

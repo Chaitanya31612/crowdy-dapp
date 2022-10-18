@@ -22,6 +22,13 @@ const reducer = (state, action) => {
       return { ...state, ...data };
 
     case actions.setCampaignArtifact:
+      return {
+        ...state,
+        compaignArtifact: data?.compaignArtifact,
+        compaignContract: data?.compaignContract,
+      };
+
+    case actions.setCampaignArtifact:
       return { ...state, ...data };
     default:
       throw new Error("Undefined reducer action type");
