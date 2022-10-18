@@ -1,5 +1,6 @@
 const actions = {
   init: "INIT",
+  setCampaignArtifact: "SET_CAMPAIGN_ARTIFACT",
 };
 
 const initialState = {
@@ -18,6 +19,9 @@ const reducer = (state, action) => {
   const { type, data } = action;
   switch (type) {
     case actions.init:
+      return { ...state, ...data };
+
+    case actions.setCampaignArtifact:
       return { ...state, ...data };
     default:
       throw new Error("Undefined reducer action type");

@@ -23,7 +23,7 @@ export default ({ children, loading, block, ...rest }) => (
           visible: loading,
           invisible: !loading,
         })}
-        size="md"
+        size="sm"
         // type="grow"
       />
     )}

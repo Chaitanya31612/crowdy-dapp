@@ -145,7 +145,9 @@ contract Campaign {
             uint256,
             uint256,
             uint256,
-            address
+            address,
+            string memory,
+            string memory
         )
     {
         return (
@@ -153,7 +155,9 @@ contract Campaign {
             address(this).balance,
             requests.length,
             approversCount,
-            manager
+            manager,
+            campaignName,
+            campaignDescription
         );
     }
 

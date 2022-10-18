@@ -22,7 +22,7 @@ function EthProvider({ children }) {
       } catch (err) {
         console.error(err);
       }
-      console.log(artifact, contract);
+      // console.log(artifact, contract);
       if (artifact?.contractName === "CampaignFactory") {
         dispatch({
           type: actions.init,
@@ -35,16 +35,16 @@ function EthProvider({ children }) {
           },
         });
       } else if (artifact?.contractName === "Campaign") {
-        dispatch({
-          type: actions.init,
-          data: {
-            compaignArtifact: artifact,
-            web3,
-            accounts,
-            networkID,
-            compaignContract: contract,
-          },
-        });
+        // dispatch({
+        //   type: actions.init,
+        //   data: {
+        //     compaignArtifact: artifact,
+        //     web3,
+        //     accounts,
+        //     networkID,
+        //     compaignContract: contract,
+        //   },
+        // });
       } else {
         dispatch({
           type: actions.init,
@@ -68,8 +68,8 @@ function EthProvider({ children }) {
         const compaignFactoryArtifact = require("../../contracts/CampaignFactory.json");
         await init(compaignFactoryArtifact);
 
-        const compaignArtifact = require("../../contracts/Campaign.json");
-        await init(compaignArtifact);
+        // const compaignArtifact = require("../../contracts/Campaign.json");
+        // await init(compaignArtifact);
       } catch (err) {
         console.error(err);
       }

@@ -2,43 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Card, CardBody, Col, Row } from "reactstrap";
 import { useEth } from "../../contexts/EthContext";
+import setCampaingArtifact from "../../contexts/EthContext/setCampaingArtifact";
 
-const CampaignPageDetails = ({ id }) => {
-  const {
-    state: { campaignContract },
-  } = useEth();
+const CampaignPageDetails = ({ campaignSummary }) => {
   const history = useHistory();
-
-  const [campaignSummary, setCampaignSummary] = useState({
-    amount: 0,
-    minContribution: 0,
-    noRequests: 0,
-    noContributors: 0,
-  });
-
-  useEffect(() => {
-    console.log("address ", id);
-  }, []);
 
   const cards = [
     {
       title: "Collected Amount",
-      text: 100,
+      text: campaignSummary.amount,
       iconClass: "bx bx-copy-alt",
     },
     {
       title: "Minimum Contribution",
-      text: 5,
+      text: campaignSummary.minContribution,
       iconClass: "bx bx-copy-alt",
     },
     {
       title: "Total Spending Requests",
-      text: 2,
+      text: campaignSummary.noRequests,
       iconClass: "bx bx-copy-alt",
     },
     {
-      title: "Total Contributors",
-      text: 3,
+      title: "Total Contributions",
+      text: campaignSummary.noContributors,
       iconClass: "bx bx-copy-alt",
     },
   ];
@@ -63,6 +50,20 @@ const CampaignPageDetails = ({ id }) => {
           View Requests
         </Button>
       </Row>
+
+      <br />
+      <Row>
+        {/* <Col lg="auto"> */}
+        <div className="page__title text-primary text-decoration-underline fw-bold mb-3">
+          {campaignSummary.campaignName}
+        </div>
+        <div className="page__title fw-normal text-muted mb-5 fs-3">
+          {campaignSummary.campaignDescription}
+        </div>
+        {/* </Col> */}
+      </Row>
+
+      <br />
 
       <Row className="campaigndetails__details">
         {cards.map((card, key) => (

@@ -3,15 +3,16 @@ import { Form, FormFeedback, FormGroup, Input } from "reactstrap";
 import { useEth } from "../../contexts/EthContext";
 import LoadingButton from "../Common/LoadingButton";
 
-const ContributeForm = () => {
+const ContributeForm = ({ campaignContract, getSummary }) => {
   const {
-    state: { compaignFactoryContract, accounts },
+    state: { accounts },
   } = useEth();
-
   const [contributeAmount, setContributeAmount] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
+
+  // console.log("campaignContract", campaignContract);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -20,9 +21,11 @@ const ContributeForm = () => {
     setDisabled(true);
     try {
       setLoading(true);
-      //   await compaignFactoryContract.methods
-      //     .createCampaign(contributeAmount)
-      //     .send({ from: accounts[0] });
+      await campaignContract.methods.contribute().send({
+        from: accounts[0],
+        value: contributeAmount,
+      });
+      getSummary();
       setLoading(false);
       setDisabled(false);
       //   history.push("/");
@@ -61,7 +64,7 @@ const ContributeForm = () => {
         <br />
         <LoadingButton
           loading={loading}
-          disabled={disabled}
+          disabled={disabled || !campaignContract}
           block={true}
           type="submit"
           className="py-2 px-4 fs-4 mt-3"
