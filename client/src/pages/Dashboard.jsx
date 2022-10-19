@@ -9,8 +9,8 @@ const Dashboard = () => {
     // <EthProvider>
     <div id="App">
       <div id="container">
-        <Header />
-        <div className="p-5">
+        {/* <Header /> */}
+        <div className="p-5 w-100">
           <CreateCampaignButton />
           <CampaignsList />
         </div>

@@ -14,5 +14,5 @@ export default async (address) => {
     console.error(err);
   }
 
-  return { compaignArtifact: artifact, compaignContract: contract };
+  return { campaignArtifact: artifact, campaignContract: contract };
 };

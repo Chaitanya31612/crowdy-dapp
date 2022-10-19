@@ -6,7 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { Spinner } from "reactstrap";
-import { CampaignPage, CreateCampaign, Dashboard } from "./pages";
+import { CampaignPage, CreateCampaign, Dashboard, RequestPage } from "./pages";
 
 import "./assets/scss/theme.scss";
 import "./App.css";
@@ -36,12 +36,17 @@ const App = () => {
           <Switch>
             {/* <Route exact path="/" component={() => <h1>home</h1>} /> */}
             <EthProvider>
-              {/* <Header /> */}
+              <Header />
               <Switch>
                 <Route exact path="/" component={Dashboard} />
                 {/* <Route exact path="/dashboard" component={Dashboard} /> */}
                 <Route exact path="/campaigns/new" component={CreateCampaign} />
                 <Route exact path="/campaigns/:id" component={CampaignPage} />
+                <Route
+                  exact
+                  path="/campaigns/:id/requests"
+                  component={RequestPage}
+                />
                 <Route path="*" component={NotFoundPage} />
               </Switch>
             </EthProvider>

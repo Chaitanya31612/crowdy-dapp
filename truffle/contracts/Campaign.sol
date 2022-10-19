@@ -126,7 +126,7 @@ contract Campaign {
         request.approvalCount++;
     }
 
-    function finalizeRequest(uint256 index) public {
+    function finalizeRequest(uint256 index) public restricted {
         Request storage request = requests[index];
 
         require(!request.complete);

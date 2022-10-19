@@ -5,7 +5,7 @@ import Header from "../components/Header";
 const CreateCampaign = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className="p-5">
         <CreateCampaignForm />
       </div>

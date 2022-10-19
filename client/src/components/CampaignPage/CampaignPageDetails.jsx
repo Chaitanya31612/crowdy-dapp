@@ -5,11 +5,9 @@ import { useEth } from "../../contexts/EthContext";
 import setCampaingArtifact from "../../contexts/EthContext/setCampaingArtifact";
 
 const CampaignPageDetails = ({ campaignSummary, address }) => {
-  const history = useHistory();
-
   const cards = [
     {
-      title: "Collected Amount (wei)",
+      title: `Collected Amount (${campaignSummary?.denomination})`,
       text: campaignSummary.amount,
       iconClass: "bx bx-copy-alt",
     },
@@ -45,26 +43,39 @@ const CampaignPageDetails = ({ campaignSummary, address }) => {
           className="p-3 mb-5 me-4 fs-5 text-decoration-none text-white bg-primary rounded"
           color="primary"
           style={{ cursor: "pointer", fontWeight: "bold" }}
-          onClick={() => history.push("/")}
         >
           View Requests
         </Link>
       </Row>
 
+      <br />
+      <br />
       <Row>
-        {/* <Col lg="auto"> */}
-        <div className="page__title text-primary text-decoration-underline fw-bold mb-3">
-          {campaignSummary.campaignName}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <div className="page__subtitle--left fs-2 text-primary fw-bold mb-3">
+              {campaignSummary.campaignName}
+            </div>
+            <div className="page__subtitle--left fw-normal text-muted mb-5 fs-4">
+              {campaignSummary.campaignDescription}
+            </div>
+          </div>
+          <div>
+            {/* manager */}
+            <div className="page__subtitle--left fs-3 fw-bold text-muted mb-3">
+              Manager:
+            </div>
+            <div className="page__subtitle--left fw-normal text-muted mb-5 fs-3">
+              {campaignSummary.manager}
+            </div>
+          </div>
         </div>
-        <div className="page__title fw-normal text-muted mb-5 fs-3">
-          {campaignSummary.campaignDescription}
-        </div>
-        {/* manager */}
-        <div className="page__title fw-bold text-muted mb-3 fs-5">Manager:</div>
-        <div className="page__title fw-normal text-muted mb-5 fs-3">
-          {campaignSummary.manager}
-        </div>
-        {/* </Col> */}
       </Row>
 
       <br />

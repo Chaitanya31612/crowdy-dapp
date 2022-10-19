@@ -17,8 +17,10 @@ function EthProvider({ children }) {
       const { abi } = artifact;
       let address, contract;
       try {
-        address = artifact.networks[networkID].address;
-        contract = new web3.eth.Contract(abi, address);
+        if (artifact.contractName !== "Campaign") {
+          address = artifact.networks[networkID].address;
+          contract = new web3.eth.Contract(abi, address);
+        }
       } catch (err) {
         console.error(err);
       }
@@ -27,22 +29,22 @@ function EthProvider({ children }) {
         dispatch({
           type: actions.init,
           data: {
-            compaignFactoryArtifact: artifact,
+            campaignFactoryArtifact: artifact,
             web3,
             accounts,
             networkID,
-            compaignFactoryContract: contract,
+            campaignFactoryContract: contract,
           },
         });
       } else if (artifact?.contractName === "Campaign") {
         // dispatch({
         //   type: actions.init,
         //   data: {
-        //     compaignArtifact: artifact,
+        //     campaignArtifact: artifact,
         //     web3,
         //     accounts,
         //     networkID,
-        //     compaignContract: contract,
+        //     campaignContract: contract,
         //   },
         // });
       } else {
@@ -65,11 +67,11 @@ function EthProvider({ children }) {
       try {
         const artifact = require("../../contracts/SimpleStorage.json");
         await init(artifact);
-        const compaignFactoryArtifact = require("../../contracts/CampaignFactory.json");
-        await init(compaignFactoryArtifact);
+        const campaignFactoryArtifact = require("../../contracts/CampaignFactory.json");
+        await init(campaignFactoryArtifact);
 
-        // const compaignArtifact = require("../../contracts/Campaign.json");
-        // await init(compaignArtifact);
+        // const campaignArtifact = require("../../contracts/Campaign.json");
+        // await init(campaignArtifact);
       } catch (err) {
         console.error(err);
       }
@@ -82,8 +84,8 @@ function EthProvider({ children }) {
     const events = ["chainChanged", "accountsChanged"];
     const handleChange = async () => {
       await init(state.artifact);
-      await init(state.compaignFactoryArtifact);
-      await init(state.compaignArtifact);
+      await init(state.campaignFactoryArtifact);
+      await init(state.campaignArtifact);
     };
 
     events.forEach((e) => window.ethereum.on(e, handleChange));
@@ -93,8 +95,8 @@ function EthProvider({ children }) {
   }, [
     init,
     state.artifact,
-    state.compaignFactoryArtifact,
-    state.compaignArtifact,
+    state.campaignFactoryArtifact,
+    state.campaignArtifact,
   ]);
 
   return (

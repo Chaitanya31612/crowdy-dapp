@@ -8,7 +8,10 @@ import { useEth } from "../contexts/EthContext";
 import setCampaingArtifact from "../contexts/EthContext/setCampaingArtifact";
 
 const CampaignPage = ({ match: { params } }) => {
-  const { dispatch } = useEth();
+  const {
+    state: { web3 },
+    dispatch,
+  } = useEth();
   const [campaignContract, setCampaignContract] = useState(null);
   const [campaignSummary, setCampaignSummary] = useState({
     minContribution: 0,
@@ -24,7 +27,12 @@ const CampaignPage = ({ match: { params } }) => {
     const summary = await campaignContract.methods.getSummary().call();
     setCampaignSummary({
       minContribution: summary[0],
-      amount: summary[1],
+      // amount: web3.utils.fromWei(summary[1], "ether"),
+      amount:
+        summary[1] >= 1000000000000000000n
+          ? web3.utils.fromWei(summary[1], "ether")
+          : summary[1],
+      denomination: summary[1] >= 1000000000000000000n ? "ETH" : "wei",
       noRequests: summary[2],
       noContributors: summary[3],
       manager: summary[4],
@@ -38,7 +46,7 @@ const CampaignPage = ({ match: { params } }) => {
       const data = await setCampaingArtifact(params.id);
       dispatch({ type: "SET_CAMPAIGN_ARTIFACT", data });
       // console.log("data", data);
-      setCampaignContract(data?.compaignContract);
+      setCampaignContract(data?.campaignContract);
     };
     init();
   }, []);
@@ -51,7 +59,7 @@ const CampaignPage = ({ match: { params } }) => {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className="p-5">
         <CampaignPageDetails
           campaignSummary={campaignSummary}

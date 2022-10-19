@@ -13,7 +13,7 @@ import { useEth } from "../../contexts/EthContext";
 
 const CampaignsList = () => {
   const {
-    state: { compaignFactoryContract },
+    state: { campaignFactoryContract },
   } = useEth();
 
   const [campaigns, setCampaigns] = useState([]);
@@ -23,12 +23,12 @@ const CampaignsList = () => {
 
   useEffect(() => {
     const getCampaigns = async () => {
-      if (compaignFactoryContract) {
-        // const campaigns = await compaignFactoryContract.methods
+      if (campaignFactoryContract) {
+        // const campaigns = await campaignFactoryContract.methods
         //   .getDeployedCampaigns()
         //   .call();
         // setCampaigns(campaigns);
-        const campainsData = await compaignFactoryContract.methods
+        const campainsData = await campaignFactoryContract.methods
           .getDeployedCampaignsData()
           .call();
         setCampaignsData(campainsData);
@@ -36,7 +36,7 @@ const CampaignsList = () => {
     };
     getCampaigns();
     // console.log("called");
-  }, [compaignFactoryContract]);
+  }, [campaignFactoryContract]);
 
   console.log(campaignsData);
   return (

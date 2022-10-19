@@ -5,14 +5,14 @@ const actions = {
 
 const initialState = {
   artifact: null,
-  compaignFactoryArtifact: null,
-  compaignArtifact: null,
+  campaignFactoryArtifact: null,
+  campaignArtifact: null,
   web3: null,
   accounts: null,
   networkID: null,
   contract: null,
-  compaignFactoryContract: null,
-  compaignContract: null,
+  campaignFactoryContract: null,
+  campaignContract: null,
 };
 
 const reducer = (state, action) => {
@@ -24,8 +24,8 @@ const reducer = (state, action) => {
     case actions.setCampaignArtifact:
       return {
         ...state,
-        compaignArtifact: data?.compaignArtifact,
-        compaignContract: data?.compaignContract,
+        campaignArtifact: data?.campaignArtifact,
+        campaignContract: data?.campaignContract,
       };
 
     case actions.setCampaignArtifact:

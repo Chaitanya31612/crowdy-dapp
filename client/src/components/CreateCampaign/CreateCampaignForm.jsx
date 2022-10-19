@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 
 const CreateCampaignForm = () => {
   const {
-    state: { compaignFactoryContract, accounts },
+    state: { campaignFactoryContract, accounts },
   } = useEth();
   const history = useHistory();
 
@@ -31,7 +31,7 @@ const CreateCampaignForm = () => {
     setDisabled(true);
     try {
       setLoading(true);
-      await compaignFactoryContract.methods
+      await campaignFactoryContract.methods
         .createCampaign(campaignName, campaignDescription, minimumContribution)
         .send({ from: accounts[0] });
       setLoading(false);
