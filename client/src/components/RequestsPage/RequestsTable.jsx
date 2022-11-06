@@ -63,27 +63,30 @@ const RequestTableRow = ({ index, request, campaignContract, getRequests }) => {
     state: { web3, accounts },
   } = useEth();
 
-  const [totalApproversCount, setTotalApproversCount] = useState(0);
+  const [totalApproversCount, setTotalApproversCount] = useState(-1);
   const [readyToFinalize, setReadyToFinalize] = useState(false);
+
+  console.log(readyToFinalize, request, totalApproversCount);
 
   useEffect(() => {
     const getTotalApproversCount = async () => {
       const totalApproversCount = await campaignContract.methods
         .approversCount()
         .call();
-      setTotalApproversCount(totalApproversCount);
+      setTotalApproversCount(Number(totalApproversCount));
     };
     getTotalApproversCount();
-    if (request.approvalCount > totalApproversCount / 2 && !request.complete) {
-      setReadyToFinalize(true);
-    }
   }, [campaignContract]);
+
   const handleApproveRequest = async () => {
     await campaignContract.methods.approveRequest(index - 1).send({
       from: accounts[0],
     });
-    getRequests();
-    if (request.approvalCount > totalApproversCount / 2 && !request.complete) {
+    await getRequests();
+    if (
+      Number(request.approvalCount) > totalApproversCount / 2 &&
+      !request.complete
+    ) {
       setReadyToFinalize(true);
     }
   };
@@ -92,11 +95,24 @@ const RequestTableRow = ({ index, request, campaignContract, getRequests }) => {
     await campaignContract.methods.finalizeRequest(index - 1).send({
       from: accounts[0],
     });
-    getRequests();
-    if (request.approvalCount > totalApproversCount / 2 && !request.complete) {
+    await getRequests();
+    if (
+      Number(request.approvalCount) > totalApproversCount / 2 &&
+      !request.complete
+    ) {
       setReadyToFinalize(true);
     }
   };
+
+  useEffect(() => {
+    if (
+      totalApproversCount !== -1 &&
+      Number(request.approvalCount) > totalApproversCount / 2 &&
+      !request.complete
+    ) {
+      setReadyToFinalize(true);
+    }
+  }, [totalApproversCount, handleApproveRequest, handleFinalizeRequest]);
 
   return (
     <tr

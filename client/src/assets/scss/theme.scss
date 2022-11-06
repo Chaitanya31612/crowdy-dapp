@@ -1,8 +1,10 @@
 // Light Theme
 @import "./app.scss";
 
-* {
+*,
+html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -13,4 +15,20 @@ body {
   color: $gray-900;
   text-align: left;
   background-color: $white;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: $main_dark;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $main_blue_dark;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $main_blue;
 }
