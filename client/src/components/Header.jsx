@@ -13,22 +13,19 @@ const Header = () => {
   return (
     <header className="w-100">
       <div className="header">
-        <Link
-          to="/"
-          className="d-flex align-items-center justify-center text-decoration-none"
-        >
+        <div className="d-flex align-items-center justify-center text-decoration-none">
           {/* <img src={crowdyLogo} className="header__logo" alt="" /> */}
           {/* <h1 className="header__title">Crowdy dApp</h1> */}
           <h1 className="herosec__head--logo">
             <Link
-              to="/"
+              to="/dashboard"
               className="herosec__head--logo-link"
               style={{ color: "#252525" }}
             >
               crowdy
             </Link>
           </h1>
-        </Link>
+        </div>
         <div>
           <EthIcon address={accounts && accounts[0]} scale={3} />
           <span className="header__address">{accounts && accounts[0]}</span>

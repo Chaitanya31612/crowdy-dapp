@@ -31,7 +31,9 @@ const FeatureSection = () => {
   return (
     <div style={{ padding: "5rem" }} id="features">
       <div className="featuresec">
-        <div className="section__subtitle">Features</div>
+        <a href="#home" className="section__subtitle text-decoration-none">
+          Features
+        </a>
         <div className="section__title">
           Crowdy Provides you <br />
           with following

@@ -5,9 +5,13 @@ const HelpSection = () => {
     <div>
       <div className="helpsec herosec__background p-5" id="help">
         <div className="helpsec__head p-5">
-          <div className="section__subtitle" style={{ color: "#5678EA" }}>
+          <a
+            href="#home"
+            className="section__subtitle text-decoration-none"
+            style={{ color: "#5678EA" }}
+          >
             Help
-          </div>
+          </a>
           <div className="section__title" style={{ color: "#ebebeb" }}>
             Need Help with something? <br />
             We are here for you.

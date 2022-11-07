@@ -7,7 +7,9 @@ const AboutSection = () => {
     <div style={{ padding: "5rem", backgroundColor: "#f6f6f6" }} id="about">
       <div className="aboutsec">
         <div className="aboutsec__head">
-          <div className="section__subtitle">About dApps</div>
+          <a href="#home" className="section__subtitle text-decoration-none">
+            About dApps
+          </a>
           <div className="section__title">What are decentralized apps?</div>
         </div>
         <div className="aboutsec__content">
@@ -24,9 +26,9 @@ const AboutSection = () => {
             <div className="section__subtitle">Benefits</div>
             <ul className="section__desc fs-3">
               <li>Fault tolerance</li>
-              <li>Data Integrity</li>
-              <li>Flexible Platform</li>
-              <li>User Privacy</li>
+              <li>Data Integrity & Immutability</li>
+              <li>Transparency & Tracebility</li>
+              <li>User Privacy & Security</li>
             </ul>
           </div>
         </div>
@@ -35,7 +37,9 @@ const AboutSection = () => {
         </div>
       </div>
       <div className="aboutsec__bottom">
-        <div className="section__subtitle">About Platform</div>
+        <a href="#home" className="section__subtitle text-decoration-none">
+          About Platform
+        </a>
         <div className="section__title">What is Crowdy?</div>
 
         <div className="aboutsec__bottom--content">

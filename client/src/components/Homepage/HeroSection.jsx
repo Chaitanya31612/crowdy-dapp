@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <div className="herosec">
+    <div className="herosec" id="home">
       <div className="herosec__background px-5">
         <div className="herosec__head">
           <h1 className="herosec__head--logo">

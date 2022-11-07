@@ -19,7 +19,9 @@ const SolutionSection = () => {
   return (
     <div style={{ padding: "5rem", backgroundColor: "#f1faf9" }} id="solution">
       <div className="problemsec">
-        <div className="section__subtitle">Solution</div>
+        <a href="#home" className="section__subtitle text-decoration-none">
+          Solution
+        </a>
         <div className="section__title">
           Crowdy brings much <br />
           needed solution

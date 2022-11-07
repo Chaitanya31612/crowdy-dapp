@@ -96,8 +96,10 @@ contract Campaign {
         require(msg.value > minimumContribution);
 
         // approvers.push(msg.sender);
-        approvers[msg.sender] = true;
-        approversCount++;
+        if (!approvers[msg.sender]) {
+            approvers[msg.sender] = true;
+            approversCount++;
+        }
     }
 
     // created by manager only

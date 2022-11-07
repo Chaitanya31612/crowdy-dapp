@@ -36,7 +36,7 @@ const CreateCampaignForm = () => {
         .send({ from: accounts[0] });
       setLoading(false);
       setDisabled(false);
-      history.push("/");
+      history.push("/dashboard");
     } catch (error) {
       setLoading(false);
       setDisabled(false);

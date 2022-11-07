@@ -19,7 +19,9 @@ const ProblemsSection = () => {
   return (
     <div style={{ padding: "5rem" }} id="problems">
       <div className="problemsec">
-        <div className="section__subtitle">Problems</div>
+        <a href="#home" className="section__subtitle text-decoration-none">
+          Problems
+        </a>
         <div className="section__title">
           Conventional Crowdfunding <br /> Application Problems
         </div>
