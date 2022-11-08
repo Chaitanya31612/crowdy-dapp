@@ -47,3 +47,28 @@ https://user-images.githubusercontent.com/54992097/200572739-359c3d83-5db6-4afa-
 Used truffle toolkit with react
 
 **Frontend**
+- HTML/CSS/JS
+- React.js
+- SCSS
+- bootstrap, reactstrap
+
+**Truffle Backend**
+- Solidity for Smart Contract
+- Ganache local network
+
+## Inspiration
+The inspiration for this project was to build a decentralized application solving current problems. There is a very critical problem in the working of current crowdfunding systems, centralization being the major one followed by accountability and consensus system for deciding expenses. I got inspiration about this application from a video of Stephen Grider where he talked about having this idea and then I implemented it and tested it on the local ganache network. This solves a lot of these problems by using the advantages blockchain provide as a technology, which include transparency, security, decentralization, consensus. The process is made as simple as possible.
+
+## How was it built
+First the smart contract for the application was created on **Remix IDE** which was tested with different inputs, then I used `truffle unbox react` to get a basic truffle template with react included. The latest version of solidity and react with Context API has been used.
+I then added the contract in the code, then wrote tests for the application which I tested using `truffle test`. After testing and finalizing I deployed them on ganache local network using `truffle migrate --network ganache_local` with instance of ganache running.
+Then I started working on the frontend part of the application. I started with designing in **AdobeXD**. I developed the frontend using react and npm libraries.
+
+## Future Scope
+- Search for campaigns
+- Profiles for managers and contributers
+- More Semantic UI
+- Spam filtering and discussion channels
+
+## Contact 
+For any assistance or need, contact me at [Chaitanya Gupta](https://www.linkedin.com/in/guptachaitanya/)
