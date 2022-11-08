@@ -9,22 +9,18 @@ const CampaignPageDetails = ({ campaignSummary, address }) => {
     {
       title: `Collected Amount (${campaignSummary?.denomination})`,
       text: campaignSummary.amount,
-      iconClass: "bx bx-copy-alt",
     },
     {
       title: "Minimum Contribution (wei)",
       text: campaignSummary.minContribution,
-      iconClass: "bx bx-copy-alt",
     },
     {
       title: "Total Spending Requests",
       text: campaignSummary.noRequests,
-      iconClass: "bx bx-copy-alt",
     },
     {
       title: "Total Number of Contributions",
       text: campaignSummary.noContributors,
-      iconClass: "bx bx-copy-alt",
     },
   ];
   return (
@@ -94,11 +90,6 @@ const CampaignPageDetails = ({ campaignSummary, address }) => {
                       {card.text}
                     </h4>
                   </div>
-                  {/* <div className="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                      <span className="avatar-title rounded-circle bg-primary">
-                        <i className={card.iconClass + " font-size-24"}></i>
-                      </span>
-                    </div> */}
                 </div>
               </CardBody>
             </Card>

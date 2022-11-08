@@ -23,7 +23,7 @@ const FeatureSection = () => {
       text: "Easy campaign creation with minimum contribution in wei or ether.",
     },
     {
-      icon: "bx bx-upvote",
+      icon: "mdi mdi-vote",
       text: "Consensus for approval of spending requests through voting system.",
     },
   ];
