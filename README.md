@@ -51,7 +51,7 @@ Used truffle toolkit with react
 - HTML/CSS/JS
 - React.js
 - SCSS
-- bootstrap, reactstrap
+- reactstrap
 
 **Truffle Backend**
 - Solidity for Smart Contract
