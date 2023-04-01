@@ -18,7 +18,7 @@ Just follow a few steps and you will be one step forward towards your goal :-
 - Be consistent and make your project reality.
 
 
-## Video
+## Live Demo
 
 
 
